@@ -1,0 +1,4 @@
+source-language: en
+target-language: ja
+docs-folder: lectures
+tool-version: 0.29.3

@@ -77,11 +77,11 @@ GitHub Copilot may leave an automated review on these pull requests. It needs no
 | Point | House style |
 |---|---|
 | Register | To be ruled: です・ます調, である調, or です・ます for explanation and である for definitions |
-| Sentence punctuation | To be ruled: 、。 or ，． |
-| Parentheses around Latin text and abbreviations | To be ruled: full-width （GDP） or half-width (GDP) |
-| Spacing between Japanese and Latin words or inline code | To be ruled: a space, or none |
+| Sentence punctuation | To be ruled: 、。, ，． or ，。 |
+| Parentheses around Latin text and abbreviations | Full-width throughout: 国内総生産（GDP）, 名前空間（namespace）, and asides （…） (ruled 2026-10-02) |
+| Spacing between Japanese and Latin words or inline code | A half-width space: NumPy の配列, `x` の値 (ruled 2026-10-02) |
 | Code comments | To be ruled: translated into Japanese, or kept in English |
-| Figure labels (plot titles, axis labels, legends) | To be ruled: translated into Japanese, or kept in English |
+| Figure labels (plot titles, axis labels, legends) | Kept in English for now, until the engine supports a Japanese font (ruled 2026-10-02); a formal rule comes later |
 
 If you think a house-style rule is itself wrong, say so on the pull request: it is then settled once for every lecture that follows, rather than lecture by lecture.
 

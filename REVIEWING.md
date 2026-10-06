@@ -1,6 +1,17 @@
 # Reviewing the Japanese edition
 
-*How the translator review of this edition works: what the repository is, who reviews what, how a round runs, the house style, and what to look for.*
+*How the translator review of this edition works. The process is in the QuantEcon Translation Manual; this file keeps what belongs to this edition: who reviews which lectures, and in what order.*
+
+## The manual
+
+The [QuantEcon Translation Manual](https://quantecon.github.io/project-translation/) sets out how a review works, for every edition. Read these pages before your first lecture:
+
+- [How a review round works](https://quantecon.github.io/project-translation/review-round.html)
+- [Reviewing on GitHub](https://quantecon.github.io/project-translation/reviewing-on-github.html): suggestions, or a commit for a larger change
+- [What to look for](https://quantecon.github.io/project-translation/what-to-look-for.html)
+- [Review by hand](https://quantecon.github.io/project-translation/review-by-hand.html)
+
+The manual's [Japanese page](https://quantecon.github.io/project-translation/languages/ja.html) has this edition's term policy, house style, settled terms, open questions and rulings log. It is updated with each ruling.
 
 ## What this repository is
 
@@ -49,69 +60,26 @@ The edition has two translators, [@Chihiro2000GitHub](https://github.com/Chihiro
 
 The first full lecture in each half is one that another edition has reviewed or is reviewing, so the results can be compared, and the lectures whose English changes most often come late. The order can still change, for example if a lecture's English is being reworked when its turn comes.
 
-## How a round works
+## A round, in brief
 
-A round is one lecture, and you review one lecture at a time.
+A round is one lecture, and you review one lecture at a time. The manual's [How a review round works](https://quantecon.github.io/project-translation/review-round.html) has the details.
 
-1. @mmcky drafts the lecture with the current version of the engine and opens a pull request for it, which closes the lecture's issue when it merges. The description says what is new in the engine since the last round, how the draft was made and machine-checked, and what was left for you to decide, and the pull request links a preview of the rendered page.
-2. You read the whole lecture and review it on the pull request. Under **Files changed**, click the blue **+** beside a line (or drag across several lines), add a suggestion, and write the line as you would have it ([GitHub's guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request)). A plain comment is fine for anything a suggestion cannot express, and you can also push commits straight to the branch.
-3. When your review is complete, say so on the pull request.
-4. @mmcky then reviews your suggestions and updates the lecture and the engine (glossary, rules, lints) before the next lecture is drafted, so the next draft starts from a better place. Suggestions applied to the lecture are committed by script, with you credited as co-author; any not applied are answered on the pull request.
+1. @mmcky drafts the lecture with the current version of the engine and opens a pull request for it. The pull request links a preview of the rendered page, and closes the lecture's issue when it merges.
+2. You read the whole lecture and review it on the pull request: a suggestion on any line you would change, or a commit to the branch for a larger change. Use a plain comment for anything a suggestion cannot express.
+3. When your review is complete, approve the pull request and mention @mmcky in the summary, for example: "Review complete. @mmcky, this is ready to merge."
+4. @mmcky applies your suggestions, with you credited as co-author, and answers any that are not applied on the pull request. The engine (glossary, rules, lints) is updated before the next lecture is drafted.
 5. @mmcky merges the pull request, and the lecture's issue closes with it.
 
-Terminology questions that affect several lectures are filed as one Decision issue for the round, assigned to both translators, because a term chosen in one half applies to the whole book. The issue outlives the pull request.
+Terminology questions that affect several lectures go to one Decision issue for the round, assigned to both translators, because a term chosen in one half applies to the whole book. The issue outlives the pull request.
 
 GitHub Copilot may leave an automated review on these pull requests. It needs no attention from you.
 
-## House style
+## Policies in brief
 
-**Terms.** The engine follows the Japanese glossary, [`glossary/ja.json`](https://github.com/QuantEcon/action-translation/blob/main/glossary/ja.json) in the engine's repository (live once [QuantEcon/action-translation#69](https://github.com/QuantEcon/action-translation/pull/69) merges), and these rules from its review:
-
-- Japanese only where a standard Japanese term exists; otherwise English, in Latin script. If in doubt, English.
-- Personal names stay in Latin script, with no katakana.
-- Compound names are joined with ・, never ＝, as in ソロー・スワン成長モデル.
-- An abbreviation is spelt out on first use, followed by the abbreviation in parentheses, as in 国内総生産（GDP）; the width of the parentheses is one of the style points below.
-
-**Style.** The first four points below are ruled on [QuantEcon/action-translation#337](https://github.com/QuantEcon/action-translation/issues/337); code comments and figure labels are open questions, to be settled later as an action-translation rule. This table is updated with each ruling:
-
-| Point | House style |
-|---|---|
-| Register | To be ruled: です・ます調, である調, or です・ます for explanation and である for definitions |
-| Sentence punctuation | To be ruled: 、。, ，． or ，。 |
-| Parentheses around Latin text and abbreviations | Full-width throughout: 国内総生産（GDP）, 名前空間（namespace）, and asides （…） (ruled 2026-10-02) |
-| Spacing between Japanese and Latin words or inline code | A half-width space: NumPy の配列, `x` の値 (ruled 2026-10-02) |
-| Code comments | To be ruled: translated into Japanese, or kept in English |
-| Figure labels (plot titles, axis labels, legends) | Kept in English for now, until the engine supports a Japanese font (ruled 2026-10-02); a formal rule comes later |
-
-If you think a house-style rule is itself wrong, say so on the pull request: it is then settled once for every lecture that follows, rather than lecture by lecture.
-
-## What matters most
-
-In order:
-
-1. **Meaning errors**: a sentence that says something different from the English, even when it reads fluently. These are the errors only a careful reader catches.
-2. **Terms** that are wrong, or that disagree with the glossary or with another lecture.
-3. **Register and punctuation** that depart from the house style.
-4. **Unnatural Japanese**: wording a good Japanese textbook would not use.
-5. **Code comments**, if the draft translates them.
-
-A term that is wrong in one lecture is probably wrong in others. Say so in your comment, and it goes into the glossary once, for every lecture that follows.
-
-## What to skip
-
-- **Errors in the English itself**: see [Errors in the English](#errors-in-the-english) below.
-- **The `translation:` block** at the top of each file, which holds the title and the heading map the engine uses to match sections across languages. If you change a heading, @mmcky updates its line in the block when applying your suggestion.
-- **Code, program output and screenshots**, which are left as they are. Code comments, figure labels and other text inside code need your eye only where the draft translates them.
-- **Structure**: the number and order of headings, code cells and directives are machine-checked against the English before each pull request opens, so only their text needs your eye.
+- **Review by hand.** Read and verify every edit yourself. Dictionaries and spelling and grammar checkers are fine when you check each change, but do not let AI or machine translation write or translate your edits. See [Review by hand](https://quantecon.github.io/project-translation/review-by-hand.html).
+- **Errors in the English go upstream.** Open an issue in [QuantEcon/lecture-python-programming](https://github.com/QuantEcon/lecture-python-programming/issues), then link it on the translated line. Your review goes ahead without waiting for the fix. You may use AI tools to help write that issue. See [Errors in the English](https://quantecon.github.io/project-translation/errors-in-the-english.html).
+- **Merging.** Write access includes the right to merge. Leave merging to @mmcky: each merge goes with an update to the engine.
 
 ## Time
 
-There is no deadline. You review one lecture at a time, and what each round teaches goes into the engine before the next lecture is drafted. If you note on the pull request roughly how long the review took, it helps us plan, but that is optional.
-
-## AI tools
-
-If an AI tool helped with a suggestion, commit or comment on a pull request, add an `Assisted-by: TOOL (MODEL)` line to it, as QuantEcon's Code of AI Use, [QEP-5](https://github.com/QuantEcon/qeps/blob/main/qeps/qep-0005-code-of-ai-use.md), asks.
-
-## Errors in the English
-
-A careful review often finds mistakes in the English lectures themselves. Those are corrected upstream, in [QuantEcon/lecture-python-programming](https://github.com/QuantEcon/lecture-python-programming/issues), so that every edition benefits. A short issue there is plenty, or mention the problem on the round's pull request and @mmcky will raise it.
+There is no deadline. If you note on the pull request roughly how long the review took, it helps us plan, but that is optional.
